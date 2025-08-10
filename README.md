@@ -24,9 +24,6 @@ It is based on the excellent work of [beevik/ntp](https://github.com/beevik/ntp)
 git clone https://github.com/casperklein/go-ntp-client
 cd go-ntp-client
 
-go mod init ntp-client
-go get github.com/beevik/ntp
-
 # CGO_ENABLED=0 --> Compile with static linking (including all library code in the binary)
 # CGO_ENABLED=1 --> Compile with shared libs
 CGO_ENABLED=0 go build -ldflags="-s -w" -o ntp-client
@@ -35,8 +32,11 @@ CGO_ENABLED=0 go build -ldflags="-s -w" -o ntp-client
 ## Build using Docker
 
 ```bash
-# Build ntp-client and copy binary to the current directory
+# Build the ntp-client binary and copy it to the ./build directory
 ./build.sh
+
+# Build the ntp-client binaries for linux/amd64, linux/arm64 and windows/amd64 and copy them to the ./build directory
+./build.sh multiarch
 ```
 
 ## Usage

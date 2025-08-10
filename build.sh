@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ue
 
 APP="ntp-client"
 
@@ -12,9 +12,9 @@ trap _cleanUp EXIT
 
 echo "Start building '$APP'"
 
-docker build -t "$APP" .
+docker build --build-arg APP="$APP" --tag "$APP" --build-arg MULTIARCH="${1:-}" .
 docker create --name "$APP" "$APP"
-docker cp ntp-client:/usr/bin/"$APP" .
+docker cp "$APP":/build/ .
 
 echo "Build was successful."
 echo

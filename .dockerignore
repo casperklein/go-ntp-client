@@ -1,2 +1,4 @@
 *
 !ntp-client.go
+!go.mod
+!go.sum
